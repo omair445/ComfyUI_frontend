@@ -117,7 +117,7 @@ classDiagram
 
 ### Frontend Implementation
 
-The `useFeatureFlags` composable provides reactive access to feature flags, meaning components will automatically update when feature flags change (e.g., during WebSocket reconnection).
+The `useFeatureFlags` composable provides reactive access to feature flags, meaning components will automatically update when feature flags change (e.g., during WebSocket reconnection or remote config updates).
 
 ```mermaid
 classDiagram
@@ -129,10 +129,8 @@ classDiagram
     }
 
     class useFeatureFlags {
-        +serverSupports(name) boolean
-        +getServerFeature(name, default) T
-        +createServerFeatureFlag(name) ComputedRef
-        +extension: ExtensionFlags
+        +flags: Readonly~ReactiveFlags~
+        +featureFlag(path, default) ComputedRef~T~
     }
 
     class VueComponent {
@@ -143,6 +141,14 @@ classDiagram
     ComfyApi <-- useFeatureFlags
     VueComponent --> useFeatureFlags
 ```
+
+**Actual Return Value:**
+
+The `useFeatureFlags()` composable returns:
+- `flags`: A readonly reactive object with getter properties for known feature flags
+- `featureFlag(path, defaultValue)`: A function that returns a computed ref for any feature flag path
+
+**Note:** Unlike the diagram above, there is no `serverSupports`, `getServerFeature`, `createServerFeatureFlag`, or `extension` property. These were from an older version. Use `flags.*` properties or the `featureFlag()` function instead.
 
 ## Examples
 
@@ -232,16 +238,21 @@ const maxSize = api.getServerFeature('max_upload_size', 100 * 1024 * 1024)
 2. **Using the composable (recommended for reactive components):**
 
 ```typescript
-const { serverSupports, getServerFeature, extension } = useFeatureFlags()
+const { flags, featureFlag } = useFeatureFlags()
 
-// Check feature support
-if (serverSupports('supports_preview_metadata')) {
+// Use predefined reactive flag properties
+if (flags.supportsPreviewMetadata) {
   // Use enhanced previews
 }
 
-// Use reactive convenience properties (automatically update if flags change)
-if (extension.manager.supportsV4.value) {
+if (flags.supportsManagerV4) {
   // Use V4 manager API
+}
+
+// Or create a computed ref for any feature flag path
+const customFeature = featureFlag('extension.custom.feature', false)
+if (customFeature.value) {
+  // Feature enabled
 }
 ```
 
@@ -249,7 +260,7 @@ if (extension.manager.supportsV4.value) {
 
 ```vue
 <template>
-  <div v-if="featureFlags.extension.manager.supportsV4">
+  <div v-if="flags.supportsManagerV4">
     <!-- V4-specific UI -->
   </div>
   <div v-else>
@@ -259,9 +270,25 @@ if (extension.manager.supportsV4.value) {
 
 <script setup>
 import { useFeatureFlags } from '@/composables/useFeatureFlags'
-const featureFlags = useFeatureFlags()
+const { flags } = useFeatureFlags()
 </script>
 ```
+
+**Available Flag Properties:**
+
+The `flags` object includes these reactive getter properties:
+- `supportsPreviewMetadata`
+- `maxUploadSize`
+- `supportsManagerV4`
+- `modelUploadButtonEnabled`
+- `assetRenameEnabled`
+- `privateModelsEnabled`
+- `onboardingSurveyEnabled`
+- `linearToggleEnabled`
+- `teamWorkspacesEnabled`
+- `userSecretsEnabled`
+
+Note: Some flags check `remoteConfig` first, then fall back to server feature flags.
 
 ### Backend Access Patterns
 
@@ -315,26 +342,27 @@ if feature_flags.supports_feature(sockets_metadata, sid, "your_new_feature"):
 }
 ```
 
-2. **For extension features**, update the composable to add convenience accessors:
+2. **For commonly-used features**, add a reactive getter to the `flags` object in `useFeatureFlags.ts`:
 
 ```typescript
 // In useFeatureFlags.ts
-const extension = {
-  manager: {
-    supportsV4: computed(() =>
-      getServerFeature('extension.manager.supports_v4', false)
-    )
-  },
-  yourExtension: {
-    supportsNewFeature: computed(() =>
-      getServerFeature('extension.yourExtension.supports_new_feature', false)
+const flags = reactive({
+  // ... existing flags
+  get yourNewFeature() {
+    return (
+      remoteConfig.value.your_new_feature ??
+      api.getServerFeature(ServerFeatureFlag.YOUR_NEW_FEATURE, false)
     )
   }
-}
+})
+```
 
-return {
-  // ... existing returns
-  extension
+Also add the flag to the `ServerFeatureFlag` enum:
+
+```typescript
+export enum ServerFeatureFlag {
+  // ... existing flags
+  YOUR_NEW_FEATURE = 'your_new_feature'
 }
 ```
 
