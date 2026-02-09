@@ -145,6 +145,7 @@ classDiagram
 **Actual Return Value:**
 
 The `useFeatureFlags()` composable returns:
+
 - `flags`: A readonly reactive object with getter properties for known feature flags
 - `featureFlag(path, defaultValue)`: A function that returns a computed ref for any feature flag path
 
@@ -277,6 +278,7 @@ const { flags } = useFeatureFlags()
 **Available Flag Properties:**
 
 The `flags` object includes these reactive getter properties:
+
 - `supportsPreviewMetadata`
 - `maxUploadSize`
 - `supportsManagerV4`
