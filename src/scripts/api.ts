@@ -1049,7 +1049,7 @@ export class ComfyApi extends EventTarget {
   /**
    * Stores a dictionary of settings for the current user
    */
-  async storeSettings(settings: Settings) {
+  async storeSettings(settings: Partial<Settings>) {
     return this.fetchApi(`/settings`, {
       method: 'POST',
       body: JSON.stringify(settings)

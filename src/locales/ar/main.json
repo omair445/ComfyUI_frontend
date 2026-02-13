@@ -91,6 +91,10 @@
     "genericLinkPlaceholder": "الصق الرابط هنا",
     "importAnother": "استيراد آخر",
     "imported": "مستوردة",
+    "invalidAsset": "عنصر غير صالح",
+    "invalidAssetDetail": "تعذر التحقق من صحة العنصر المحدد. يرجى المحاولة مرة أخرى.",
+    "invalidFilename": "اسم ملف غير صالح",
+    "invalidFilenameDetail": "تعذر تحديد اسم ملف العنصر. يرجى المحاولة مرة أخرى.",
     "jobId": "معرّف المهمة",
     "loadingModels": "جارٍ تحميل {type}...",
     "maxFileSize": "الحد الأقصى لحجم الملف: {size}",
@@ -816,6 +820,7 @@
     "enterBaseName": "أدخل الاسم الأساسي",
     "enterNewName": "أدخل الاسم الجديد",
     "enterNewNamePrompt": "أدخل اسمًا جديدًا:",
+    "enterSubgraph": "دخول الرسم البياني الفرعي",
     "error": "خطأ",
     "errorLoadingImage": "حدث خطأ أثناء تحميل الصورة",
     "errorLoadingVideo": "حدث خطأ أثناء تحميل الفيديو",
@@ -1736,7 +1741,9 @@
   "missingModelsDialog": {
     "doNotAskAgain": "عدم العرض مرة أخرى",
     "missingModels": "نماذج مفقودة",
-    "missingModelsMessage": "عند تحميل الرسم البياني، لم يتم العثور على النماذج التالية"
+    "missingModelsMessage": "عند تحميل الرسم البياني، لم يتم العثور على النماذج التالية",
+    "reEnableInSettings": "إعادة التفعيل في {link}",
+    "reEnableInSettingsLink": "الإعدادات"
   },
   "missingNodes": {
     "cloud": {
@@ -2803,6 +2810,9 @@
   "vueNodesMigrationMainMenu": {
     "message": "يمكنك العودة إلى Nodes 2.0 في أي وقت من القائمة الرئيسية."
   },
+  "vueNodesSlot": {
+    "iterative": "(تكراري)"
+  },
   "welcome": {
     "getStarted": "ابدأ الآن",
     "title": "مرحباً بك في ComfyUI"
@@ -2823,6 +2833,7 @@
       "placeholder": "اختر...",
       "placeholderAudio": "اختر صوت...",
       "placeholderImage": "اختر صورة...",
+      "placeholderMesh": "اختر شبكة...",
       "placeholderModel": "اختر نموذج...",
       "placeholderUnknown": "اختر وسائط...",
       "placeholderVideo": "اختر فيديو..."
@@ -2861,7 +2872,8 @@
     "unsavedChanges": {
       "message": "لديك تغييرات غير محفوظة. هل تريد تجاهلها والانتقال إلى مساحة عمل أخرى؟",
       "title": "تغييرات غير محفوظة"
-    }
+    },
+    "viewWorkspace": "عرض مساحة العمل"
   },
   "workspaceAuth": {
     "errors": {
@@ -2910,6 +2922,14 @@
       "placeholder": "أدخل بريد الشخص الإلكتروني",
       "title": "دعوة شخص إلى هذه المساحة"
     },
+    "inviteUpsellDialog": {
+      "messageNotSubscribed": "لإضافة أعضاء فريق إلى مساحة العمل هذه، تحتاج إلى خطة Creator أو أعلى. خطة Standard تدعم مقعدًا واحدًا فقط (المالك).",
+      "messageSingleSeat": "خطة Standard تتضمن مقعدًا واحدًا فقط لمالك مساحة العمل. لدعوة أعضاء إضافيين، قم بالترقية إلى خطة Creator أو أعلى لتفعيل المقاعد المتعددة.",
+      "titleNotSubscribed": "الاشتراك مطلوب لدعوة الأعضاء",
+      "titleSingleSeat": "خطتك الحالية تدعم مقعدًا واحدًا فقط",
+      "upgradeToCreator": "الترقية إلى Creator",
+      "viewPlans": "عرض الخطط"
+    },
     "leaveDialog": {
       "leave": "مغادرة",
       "message": "لن تتمكن من الانضمام مرة أخرى إلا إذا تواصلت مع مالك مساحة العمل.",
@@ -2935,7 +2955,10 @@
       "tabs": {
         "active": "نشط",
         "pendingCount": "معلق ({count})"
-      }
+      },
+      "upsellBannerSubscribe": "اشترك في خطة Creator أو أعلى لدعوة أعضاء الفريق إلى مساحة العمل هذه.",
+      "upsellBannerUpgrade": "قم بالترقية إلى خطة Creator أو أعلى لدعوة أعضاء فريق إضافيين.",
+      "viewPlans": "عرض الخطط"
     },
     "menu": {
       "deleteWorkspace": "حذف مساحة العمل",

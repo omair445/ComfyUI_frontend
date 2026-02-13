@@ -91,6 +91,10 @@
     "genericLinkPlaceholder": "Вставьте ссылку сюда",
     "importAnother": "Импортировать другой",
     "imported": "Импортировано",
+    "invalidAsset": "Недопустимый ресурс",
+    "invalidAssetDetail": "Выбранный ресурс не удалось проверить. Пожалуйста, попробуйте еще раз.",
+    "invalidFilename": "Недопустимое имя файла",
+    "invalidFilenameDetail": "Не удалось определить имя файла ресурса. Пожалуйста, попробуйте еще раз.",
     "jobId": "ID задачи",
     "loadingModels": "Загрузка {type}...",
     "maxFileSize": "Максимальный размер файла: {size}",
@@ -816,6 +820,7 @@
     "enterBaseName": "Введите базовое имя",
     "enterNewName": "Введите новое имя",
     "enterNewNamePrompt": "Введите новое имя:",
+    "enterSubgraph": "Войти в подграф",
     "error": "Ошибка",
     "errorLoadingImage": "Ошибка загрузки изображения",
     "errorLoadingVideo": "Ошибка загрузки видео",
@@ -1736,7 +1741,9 @@
   "missingModelsDialog": {
     "doNotAskAgain": "Больше не показывать это",
     "missingModels": "Отсутствующие модели",
-    "missingModelsMessage": "При загрузке графа следующие модели не были найдены"
+    "missingModelsMessage": "При загрузке графа следующие модели не были найдены",
+    "reEnableInSettings": "Включить снова в {link}",
+    "reEnableInSettingsLink": "Настройки"
   },
   "missingNodes": {
     "cloud": {
@@ -2803,6 +2810,9 @@
   "vueNodesMigrationMainMenu": {
     "message": "Переключиться обратно на Nodes 2.0 можно в главном меню."
   },
+  "vueNodesSlot": {
+    "iterative": "(Итеративно)"
+  },
   "welcome": {
     "getStarted": "Начать",
     "title": "Добро пожаловать в ComfyUI"
@@ -2823,6 +2833,7 @@
       "placeholder": "Выбрать...",
       "placeholderAudio": "Выбрать аудио...",
       "placeholderImage": "Выбрать изображение...",
+      "placeholderMesh": "Выберите mesh...",
       "placeholderModel": "Выбрать модель...",
       "placeholderUnknown": "Выбрать медиа...",
       "placeholderVideo": "Выбрать видео..."
@@ -2861,7 +2872,8 @@
     "unsavedChanges": {
       "message": "У вас есть несохранённые изменения. Хотите их отменить и переключиться на другое рабочее пространство?",
       "title": "Несохранённые изменения"
-    }
+    },
+    "viewWorkspace": "Просмотреть рабочее пространство"
   },
   "workspaceAuth": {
     "errors": {
@@ -2910,6 +2922,14 @@
       "placeholder": "Введите email человека",
       "title": "Пригласить человека в это рабочее пространство"
     },
+    "inviteUpsellDialog": {
+      "messageNotSubscribed": "Чтобы добавить участников в это рабочее пространство, необходим тариф Creator или выше. Тариф Standard поддерживает только одно место (владельца).",
+      "messageSingleSeat": "Тариф Standard включает одно место для владельца рабочего пространства. Чтобы пригласить дополнительных участников, обновите тариф до Creator или выше для открытия нескольких мест.",
+      "titleNotSubscribed": "Для приглашения участников требуется подписка",
+      "titleSingleSeat": "Ваш текущий тариф поддерживает только одно место",
+      "upgradeToCreator": "Обновить до Creator",
+      "viewPlans": "Посмотреть тарифы"
+    },
     "leaveDialog": {
       "leave": "Покинуть",
       "message": "Вы не сможете присоединиться снова, если не свяжетесь с владельцем рабочего пространства.",
@@ -2935,7 +2955,10 @@
       "tabs": {
         "active": "Активные",
         "pendingCount": "Ожидают ({count})"
-      }
+      },
+      "upsellBannerSubscribe": "Оформите подписку на тариф Creator или выше, чтобы пригласить участников в это рабочее пространство.",
+      "upsellBannerUpgrade": "Обновите тариф до Creator или выше, чтобы пригласить дополнительных участников.",
+      "viewPlans": "Посмотреть тарифы"
     },
     "menu": {
       "deleteWorkspace": "Удалить рабочее пространство",

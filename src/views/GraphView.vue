@@ -16,6 +16,7 @@
   </div>
 
   <GlobalToast />
+  <InviteAcceptedToast />
   <RerouteMigrationToast />
   <ModelImportProgressDialog />
   <AssetExportProgressDialog />
@@ -45,12 +46,14 @@ import MenuHamburger from '@/components/MenuHamburger.vue'
 import UnloadWindowConfirmDialog from '@/components/dialog/UnloadWindowConfirmDialog.vue'
 import GraphCanvas from '@/components/graph/GraphCanvas.vue'
 import GlobalToast from '@/components/toast/GlobalToast.vue'
+import InviteAcceptedToast from '@/components/toast/InviteAcceptedToast.vue'
 import RerouteMigrationToast from '@/components/toast/RerouteMigrationToast.vue'
 import { useBrowserTabTitle } from '@/composables/useBrowserTabTitle'
 import { useCoreCommands } from '@/composables/useCoreCommands'
 import { useErrorHandling } from '@/composables/useErrorHandling'
 import { useProgressFavicon } from '@/composables/useProgressFavicon'
 import { SERVER_CONFIG_ITEMS } from '@/constants/serverConfig'
+import type { ServerConfig, ServerConfigValue } from '@/constants/serverConfig'
 import { i18n, loadLocale } from '@/i18n'
 import AssetExportProgressDialog from '@/platform/assets/components/AssetExportProgressDialog.vue'
 import ModelImportProgressDialog from '@/platform/assets/components/ModelImportProgressDialog.vue'
@@ -346,7 +349,7 @@ const onGraphReady = () => {
 
     // Load server config
     wrapWithErrorHandling(useServerConfigStore().loadServerConfig)(
-      SERVER_CONFIG_ITEMS,
+      SERVER_CONFIG_ITEMS as ServerConfig<ServerConfigValue>[],
       settingStore.get('Comfy.Server.ServerConfigValues')
     )
 
